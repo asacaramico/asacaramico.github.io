@@ -230,6 +230,14 @@
     background: conic-gradient(var(--amber) 0 64%, transparent 64% 100%);
     position: relative;
   }
+  .progress-circle3 {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    background: conic-gradient(var(--amber) 0 85%, transparent 85% 100%);
+    position: relative;
+  }
   .progress-circle::after {
     content: "";
     position: absolute;
@@ -386,6 +394,20 @@
           </div>
           <div class="cell-output">
             <span class="progress-status"><span class="progress-circle2" aria-hidden="true"></span>64% Complete</span>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="cell">
+        <div class="prompt"><span class="in">In [1]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">SQL Fundamentals</p>
+            <p class="meta">Skill Track</p>
+          </div>
+          <div class="cell-output">
+            <span class="progress-status"><span class="progress-circle3" aria-hidden="true"></span>85% Complete</span>
           </div>
         </div>
       </div>
