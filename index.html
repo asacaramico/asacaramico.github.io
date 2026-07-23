@@ -207,7 +207,36 @@
     color: var(--teal);
     font-weight: 600;
   }
-  .status-ok::before { content: "✓ "; }
+  .progress-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--amber);
+    font-weight: 600;
+  }
+  .progress-circle1 {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    background: conic-gradient(var(--amber) 0 75%, transparent 75% 100%);
+    position: relative;
+  }
+  .progress-circle2 {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    background: conic-gradient(var(--amber) 0 64%, transparent 64% 100%);
+    position: relative;
+  }
+  .progress-circle::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--paper-dim);
+  }
   .cert-link {
     font-family: var(--mono);
     font-size: 13px;
@@ -223,8 +252,7 @@
   /* Track grouping label */
   .track-label {
     font-family: var(--mono);
-    font-size: 12px;
-    text-transform: uppercase;
+    font-size: 16px;
     letter-spacing: 0.08em;
     color: var(--amber);
     margin: 30px 0 10px 84px;
@@ -282,19 +310,19 @@
     <!-- HERO -->
     <section class="hero">
       <h1>Asa Caramico</h1>
-      <p class="role">Below are the courses, tracks, and certifications that I have pursued in Datacamp.</p>
+      <p class="role">Below are the courses, tracks, and certifications that I have pursued in Datacamp</p>
       <div class="links">
         <a href="https://linkedin.com/in/asacaramico" target="_blank" rel="noopener">linkedin</a>
         <a href="mailto: asacaramico@gmail.com">asacaramico@gmail.com</a>
       </div>
       <div class="output-block">
         <span class="label">Out[0]:</span>
-        13 courses completed · 0 certifications · 4 projects
+        0 certifications · 13 courses completed · 4 projects · 47 total hrs of coursework
       </div>
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section id="certifications">
+    <!-- <section id="certifications">
       <div class="section-head">
         <h2>Certifications</h2>
         <span class="count">verified credentials</span>
@@ -327,16 +355,81 @@
           </div>
         </div>
       </div>
+    </section> -->
+
+    <!-- tracks -->
+    <section id="Tracks">
+      <div class="section-head">
+        <h2>Tracks</h2>
+        <span class="count">focused learning paths</span>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [1]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Associate Data Analyst in SQL</p>
+            <p class="meta">Career Track</p>
+          </div>
+          <div class="cell-output">
+            <span class="progress-status"><span class="progress-circle1" aria-hidden="true"></span>75% Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [1]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Data Analyst in R</p>
+            <p class="meta">Career Track</p>
+          </div>
+          <div class="cell-output">
+            <span class="progress-status"><span class="progress-circle2" aria-hidden="true"></span>64% Complete</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- COURSES -->
     <section id="courses">
       <div class="section-head">
         <h2>Completed Coursework</h2>
-        <span class="count">chronological</span>
+        <span class="count">by category</span>
       </div>
 
-      <div class="track-label">Track — Python Fundamentals</div>
+        <section id="sql">
+      <div class="track-label">SQL</div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [4]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Introduction to SQL</p>
+            <p class="meta">30 min - 1hr</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/93497e20b2eafbd18a118f94cb737ed988431190?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [4]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Data Manipulation in SQL</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/ca29a963d4173153eb8f447c80ab11babc566262?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+
 
       <div class="cell">
         <div class="prompt"><span class="in">In [3]:</span></div>
@@ -354,52 +447,159 @@ PostgreSQL</p>
       </div>
 
       <div class="cell">
-        <div class="prompt"><span class="in">In [4]:</span></div>
+        <div class="prompt"><span class="in">In [3]:</span></div>
         <div class="cell-body">
           <div class="cell-input">
-            <p class="title">Intermediate Python</p>
-            <p class="meta">4 hrs · [Month Year]</p>
+            <p class="title">PostgreSQL Summary Stats and Window Functions</p>
+            <p class="meta">4 hrs</p>
           </div>
           <div class="cell-output">
             <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/fadbde4e96fd2dde6660a3e789a4dbe248383188?raw=1" target="_blank" rel="noopener">View certificate →</a>
           </div>
         </div>
       </div>
 
-      <div class="track-label">Track — Data Manipulation</div>
+      <div class="cell">
+        <div class="prompt"><span class="in">In [3]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Joining Data in SQL</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/9132356052130e95f165ad69616b0e302017c397?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section id="python">
+
+      <div class="track-label">Python</div>
 
       <div class="cell">
         <div class="prompt"><span class="in">In [5]:</span></div>
         <div class="cell-body">
           <div class="cell-input">
-            <p class="title">Data Manipulation with pandas</p>
-            <p class="meta">4 hrs · [Month Year]</p>
+            <p class="title">Introduction to Python</p>
+            <p class="meta">4 hrs</p>
           </div>
           <div class="cell-output">
             <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/21ef44d5ea311093cdf71f722fd71859cb129190?raw=1" target="_blank" rel="noopener">View certificate →</a>
           </div>
         </div>
       </div>
 
       <div class="cell">
-        <div class="prompt"><span class="in">In [6]:</span></div>
+        <div class="prompt"><span class="in">In [5]:</span></div>
         <div class="cell-body">
           <div class="cell-input">
-            <p class="title">Joining Data with pandas</p>
-            <p class="meta">3 hrs · [Month Year]</p>
+            <p class="title">Intermediate Python</p>
+            <p class="meta">4 hrs</p>
           </div>
           <div class="cell-output">
             <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/994a8ea43c27fa6bae38a84f0d9ab4946ffef39a?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section id="r">
+    <div class="track-label">R</div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Introduction to R</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/1ab4221987c7d1bf7ac716c90df8f053a6fd7777?raw=1" target="_blank" rel="noopener">View certificate →</a>
           </div>
         </div>
       </div>
 
-      <!--
-        ADD MORE COURSE CELLS HERE.
-        Copy a .cell block above, update the In[n] number in sequence,
-        the title, hours, and month/year. Group under a new
-        .track-label div whenever you start a new skill track.
-      -->
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Introduction to Statistics in R</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/4b74e9cdaffe9e888ebe2d531891264a3ba79fbf?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Joining Data with dplyr</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/4b74e9cdaffe9e888ebe2d531891264a3ba79fbf?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Introduction to the Tidyverse</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/880fe1feb4c68080ec12c117e9d987827fa2d9f3?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Data Manipulation with dplyr</p>
+            <p class="meta">4 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/161f2e71920835d55a93b8e6d500fce724d35ce5?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section id="Other">
+      <div class="track-label">Other</div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Understanding Data Engineering</p>
+            <p class="meta">2 hrs</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+            <a class="cert-link" href="https://www.datacamp.com/statement-of-accomplishment/course/95650ea564a2fe55d9833d69ea537dc2a0517f63?raw=1" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+      </section>
+
 
     </section>
 
@@ -411,11 +611,11 @@ PostgreSQL</p>
       </div>
       <div class="skills">
         <span class="skill-chip">Python</span>
-        <span class="skill-chip">pandas</span>
+        <span class="skill-chip">R</span>
         <span class="skill-chip">SQL</span>
-        <span class="skill-chip">[Skill]</span>
-        <span class="skill-chip">[Skill]</span>
-        <span class="skill-chip">[Skill]</span>
+        <span class="skill-chip">Data Manipulation</span>
+        <span class="skill-chip">Statistical Analysis</span>
+        <span class="skill-chip">Data Visualization</span>
       </div>
     </section>
 
