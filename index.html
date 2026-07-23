@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Data Science Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F7F9;
+    --paper-dim: #EEF0F3;
+    --ink: #1B2430;
+    --ink-soft: #5B6470;
+    --teal: #2D5F4F;
+    --teal-dim: #E4EDE9;
+    --amber: #B8860B;
+    --line: #D8DCE1;
+    --line-strong: #C2C8D0;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  a { color: var(--teal); }
+  a:focus-visible, button:focus-visible, .cert-link:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Top bar mimicking a notebook toolbar ---------- */
+  .toolbar {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .toolbar .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toolbar .dots span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--line-strong);
+    margin-right: 5px;
+  }
+  .toolbar .filename::before { content: "📓 "; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 40px;
+  }
+  .comment {
+    font-family: var(--mono);
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin: 0 0 6px;
+  }
+  .comment::before { content: "# "; color: var(--line-strong); }
+
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .hero .role {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    max-width: 58ch;
+  }
+  .hero .links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 14px;
+  }
+  .hero .links a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--teal);
+    padding-bottom: 1px;
+  }
+  .hero .links a:hover { background: var(--teal-dim); }
+
+  .output-block {
+    margin-top: 28px;
+    background: var(--paper-dim);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--teal);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .output-block .label {
+    color: var(--teal);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ---------- Section headers ---------- */
+  section { padding: 12px 0 8px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 40px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head h2 {
+    font-family: var(--mono);
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .section-head .count {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Notebook cell ---------- */
+  .cell {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 4px 16px;
+    margin-bottom: 22px;
+  }
+  .cell .prompt {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--line-strong);
+    padding-top: 14px;
+    text-align: right;
+  }
+  .cell .prompt .in { color: var(--teal); }
+  .cell .prompt .out { color: var(--amber); }
+
+  .cell-body {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .cell-input {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cell-input .title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 4px;
+  }
+  .cell-input .meta {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .cell-output {
+    padding: 12px 18px;
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--paper-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .status-ok {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .status-ok::before { content: "✓ "; }
+  .cert-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-decoration: none;
+    color: #fff;
+    background: var(--teal);
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+  }
+  .cert-link:hover { background: #234b3e; }
+
+  /* Track grouping label */
+  .track-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    margin: 30px 0 10px 84px;
+  }
+
+  /* ---------- Skills row ---------- */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 0;
+    padding-left: 84px;
+  }
+  .skill-chip {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    padding: 4px 9px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 60px;
+    padding: 28px 0 50px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  footer .kernel {
+    color: var(--teal);
+  }
+
+  @media (max-width: 560px) {
+    .cell { grid-template-columns: 40px 1fr; }
+    .cell .prompt { font-size: 10.5px; padding-top: 12px; }
+    .track-label, .skills { padding-left: 56px; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="wrap">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="filename">portfolio.ipynb</div>
+      <div>kernel: active</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="comment">Initializing portfolio</p>
+      <h1>[Your Name]</h1>
+      <p class="role">[A one-line description — e.g. "Data analyst turning messy spreadsheets into decisions. Currently building skills in Python, SQL, and data visualization."]</p>
+      <div class="links">
+        <a href="https://linkedin.com/in/[your-handle]" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/[your-username]" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:[your.email@example.com]">Email</a>
+      </div>
+      <div class="output-block">
+        <span class="label">Out[0]:</span>
+        [Optional: a short summary stat, e.g. "14 courses completed · 3 certifications · 62 hours of coursework"]
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="section-head">
+        <h2>Certifications</h2>
+        <span class="count">verified credentials</span>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [1]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Data Analyst in Python</p>
+            <p class="meta">DataCamp Certification · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Verified</span>
+            <a class="cert-link" href="[link to certificate]" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [2]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">[Certification name]</p>
+            <p class="meta">DataCamp Certification · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Verified</span>
+            <a class="cert-link" href="[link to certificate]" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses">
+      <div class="section-head">
+        <h2>Completed Coursework</h2>
+        <span class="count">chronological</span>
+      </div>
+
+      <div class="track-label">Track — Python Fundamentals</div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [3]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Introduction to Python</p>
+            <p class="meta">4 hrs · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [4]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Intermediate Python</p>
+            <p class="meta">4 hrs · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="track-label">Track — Data Manipulation</div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [5]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Data Manipulation with pandas</p>
+            <p class="meta">4 hrs · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell">
+        <div class="prompt"><span class="in">In [6]:</span></div>
+        <div class="cell-body">
+          <div class="cell-input">
+            <p class="title">Joining Data with pandas</p>
+            <p class="meta">3 hrs · [Month Year]</p>
+          </div>
+          <div class="cell-output">
+            <span class="status-ok">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        ADD MORE COURSE CELLS HERE.
+        Copy a .cell block above, update the In[n] number in sequence,
+        the title, hours, and month/year. Group under a new
+        .track-label div whenever you start a new skill track.
+      -->
+
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-head">
+        <h2>Tools & Skills</h2>
+        <span class="count">accumulated</span>
+      </div>
+      <div class="skills">
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">pandas</span>
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">[Skill]</span>
+        <span class="skill-chip">[Skill]</span>
+        <span class="skill-chip">[Skill]</span>
+      </div>
+    </section>
+
+    <footer>
+      <span class="kernel">●</span> kernel idle — last run [Month Year]. Built with pandas, patience, and a lot of exercises.
+    </footer>
+
+  </div>
+
+</body>
+</html>
